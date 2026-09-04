@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Natanael - Beranda SMAN 2 Kota Mojokerto</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e3a8a', // Navy blue
+                        secondary: '#3b82f6',
+                        lightbg: '#f8fafc',
+                        darktext: '#1e293b'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        .page-content {
+            display: none;
+        }
+        .page-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <header class="bg-primary text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <!-- Brand / Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="bg-secondary text-white font-bold p-2 rounded-lg shadow">
+                        <i class="fa-solid fa-gear"></i>
+                    </div>
+                    <span class="text-lg sm:text-xl font-bold tracking-wide">Natan.dev / Portofolio</span>
+                </div>
+
+                <!-- Desktop Menu Utama -->
+                <nav class="hidden md:flex space-x-1 lg:space-x-4">
+                    <button onclick="switchPage('beranda')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition hover:bg-blue-800 active-tab bg-blue-900" data-target="beranda">
+                        <i class="fa-solid fa-house mr-1"></i> Beranda
+                    </button>
+                    <button onclick="switchPage('tentang')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition hover:bg-blue-800" data-target="tentang">
+                        <i class="fa-solid fa-user mr-1"></i> Tentang Saya
+                    </button>
+                    <button onclick="switchPage('jaringan')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition hover:bg-blue-800" data-target="jaringan">
+                        <i class="fa-solid fa-network-wired mr-1"></i> Jaringan Komputer
+                    </button>
+                    <button onclick="switchPage('iot')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition hover:bg-blue-800" data-target="iot">
+                        <i class="fa-solid fa-microchip mr-1"></i> IoT & Arduino
+                    </button>
+                    <button onclick="switchPage('proyek')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition hover:bg-blue-800" data-target="proyek">
+                        <i class="fa-solid fa-lightbulb mr-1"></i> Galeri Proyek
+                    </button>
+                    <button onclick="switchPage('kontak')" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition hover:bg-blue-800" data-target="kontak">
+                        <i class="fa-solid fa-envelope mr-1"></i> Kontak
+                    </button>
+                </nav>
+
+                <!-- Mobile Hamburger Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="text-white focus:outline-none p-2 rounded-lg hover:bg-blue-800">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-primary px-4 pt-2 pb-4 space-y-1 shadow-lg border-t border-blue-800">
+            <button onclick="switchPage('beranda'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-blue-800"><i class="fa-solid fa-house mr-2"></i> Beranda</button>
+            <button onclick="switchPage('tentang'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-blue-800"><i class="fa-solid fa-user mr-2"></i> Tentang Saya</button>
+            <button onclick="switchPage('jaringan'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-blue-800"><i class="fa-solid fa-network-wired mr-2"></i> Jaringan Komputer</button>
+            <button onclick="switchPage('iot'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-blue-800"><i class="fa-solid fa-microchip mr-2"></i> IoT & Arduino</button>
+            <button onclick="switchPage('proyek'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-blue-800"><i class="fa-solid fa-lightbulb mr-2"></i> Galeri Proyek</button>
+            <button onclick="switchPage('kontak'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-blue-800"><i class="fa-solid fa-envelope mr-2"></i> Kontak</button>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Halaman Beranda -->
+        <div id="page-beranda" class="page-content active">
+            <!-- Hero / Banner Section -->
+            <section class="bg-gradient-to-r from-blue-900 to-indigo-900 text-white py-16 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
+                    <div class="md:w-1/2 space-y-6 text-center md:text-left mb-8 md:mb-0">
+                        <span class="bg-blue-700 text-blue-100 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Portofolio Akademik SMAN 2 Kota Mojokerto</span>
+                        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight">Halo, saya <span class="text-blue-400">Natanael Leonard Antonio</span></h1>
+                        <p class="text-lg text-blue-200">Siswa kelas XII 5 IPA Informatika di SMAN 2 Kota Mojokerto, berdedikasi untuk melanjutkan kuliah S1 Teknik Mesin dengan perpaduan keahlian komputasi dan mekanika.</p>
+                        <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+                            <button onclick="switchPage('proyek')" class="bg-secondary hover:bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow transition transform hover:-translate-y-0.5">
+                                <i class="fa-solid fa-rocket mr-2"></i> Lihat Proyek Saya
+                            </button>
+                            <button onclick="switchPage('kontak')" class="bg-white hover:bg-gray-100 text-primary font-medium px-6 py-3 rounded-lg shadow transition transform hover:-translate-y-0.5">
+                                <i class="fa-solid fa-paper-plane mr-2"></i> Hubungi Saya
+                            </button>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 flex justify-center">
+                        <div class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20">
+                            <!-- Foto profil dengan fallback placeholder -->
+                            <img src="https://placehold.co/400x400/1e3a8a/ffffff?text=Natanael+Profil" onerror="this.src='https://placehold.co/400x400/cccccc/333333?text=Foto+Profil'" alt="Foto Profil Natanael" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Ringkasan Keahlian (Skills Summary) -->
+            <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-darktext">Ringkasan Keahlian & Peminatan Teknik</h2>
+                    <p class="text-gray-600 mt-2">Kombinasi sains, informatika, dan dasar-dasar teknik mesin untuk persiapan studi tingkat lanjut.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition">
+                        <div class="w-12 h-12 bg-blue-100 text-primary rounded-lg flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-gear"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Peminatan Teknik Mesin</h3>
+                        <p class="text-gray-600 text-sm">Ketertarikan mendalam pada sistem mekanika, termodinamika dasar, dan perancangan desain teknik manufaktur.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition">
+                        <div class="w-12 h-12 bg-blue-100 text-primary rounded-lg flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">HTML & CSS Web Dev</h3>
+                        <p class="text-gray-600 text-sm">Membangun halaman web portofolio semantik dan responsif untuk presentasi karya akademik.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition">
+                        <div class="w-12 h-12 bg-blue-100 text-primary rounded-lg flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Jaringan & Sistem Komputasi</h3>
+                        <p class="text-gray-600 text-sm">Memahami dasar jaringan komputer, konfigurasi perangkat, serta pemecahan masalah sistem digital.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition">
+                        <div class="w-12 h-12 bg-blue-100 text-primary rounded-lg flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">IoT & Mekatronika Dasar</h3>
+                        <p class="text-gray-600 text-sm">Eksperimen mikrokontroler Arduino, sensor, dan aktuator untuk otomatisasi sistem mekanik.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition">
+                        <div class="w-12 h-12 bg-blue-100 text-primary rounded-lg flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Problem Solving & Analitis</h3>
+                        <p class="text-gray-600 text-sm">Kekuatan logika sains alam (IPA) dalam menganalisis fenomena fisika dan perhitungan matematis teknik.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition">
+                        <div class="w-12 h-12 bg-blue-100 text-primary rounded-lg flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-users-gear"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Kolaborasi Tim Proyek</h3>
+                        <p class="text-gray-600 text-sm">Aktif bekerja sama dalam kelompok belajar sains, eksperimen laboratorium, dan pembuatan tugas akhir.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Halaman Tentang Saya -->
+        <div id="page-tentang" class="page-content">
+            <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <h1 class="text-3xl font-bold text-darktext">Tentang Saya</h1>
+                    <p class="text-gray-600 mt-2">Profil akademik, biodata lengkap, dan dokumentasi kegiatan belajar di SMAN 2 Kota Mojokerto.</p>
+                </div>
+
+                <!-- Biodata Lengkap Card -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 mb-12">
+                    <div class="bg-primary px-6 py-4 text-white">
+                        <h2 class="text-lg font-semibold"><i class="fa-solid fa-id-card mr-2"></i> Biodata Lengkap & Riwayat Pendidikan</h2>
+                    </div>
+                    <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <table class="w-full text-sm">
+                                <tr class="border-b"><td class="py-3 font-semibold text-gray-700">Nama Lengkap</td><td class="py-3 text-gray-600">Natanael Leonard Antonio</td></tr>
+                                <tr class="border-b"><td class="py-3 font-semibold text-gray-700">Kelas / Peminatan</td><td class="py-3 text-gray-600">Kelas XII 5 IPA / Informatika</td></tr>
+                                <tr class="border-b"><td class="py-3 font-semibold text-gray-700">Asal Sekolah</td><td class="py-3 text-gray-600">SMAN 2 Kota Mojokerto</td></tr>
+                                <tr class="border-b"><td class="py-3 font-semibold text-gray-700">Lokasi</td><td class="py-3 text-gray-600">Mojokerto, Jawa Timur</td></tr>
+                            </table>
+                        </div>
+                        <div>
+                            <table class="w-full text-sm">
+                                <tr class="border-b"><td class="py-3 font-semibold text-gray-700">Rencana Studi Lanjutan</td><td class="py-3 text-green-700 font-semibold">S1 Teknik Mesin</td></tr>
+                                <tr class="border-b"><td class="py-3 font-semibold text-gray-700">Minat & Hobi</td><td class="py-3 text-gray-600">Mekanika, Otomotif, Coding & Robotika</td></tr>
+                                <tr class="border-b"><td class="py-3 font-semibold text-gray-700">Fokus Akademik</td><td class="py-3 text-gray-600">Fisika, Matematika Lanjutan, & Informatika</td></tr>
+                                <tr class="border-b"><td class="py-3 font-semibold text-gray-700">Status Portofolio</td><td class="py-3 text-primary font-semibold">Aktif Tahun Ajaran 2025/2026</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Galeri Aktivitas Belajar -->
+                <div>
+                    <h3 class="text-2xl font-bold text-darktext mb-6">Galeri Aktivitas Lab Sains & Informatika SMAN 2</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                            <img src="https://placehold.co/400x300/e2e8f0/475569?text=Praktikum+Fisika" onerror="this.src='https://placehold.co/400x300/cccccc/333333?text=Foto+Lab+1'" alt="Praktikum Fisika" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h4 class="font-semibold text-gray-800">Praktikum Laboratorium Fisika</h4>
+                                <p class="text-xs text-gray-500 mt-1">Eksperimen mekanika dan gaya untuk dasar teknik mesin.</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                            <img src="https://placehold.co/400x300/e2e8f0/475569?text=Lab+Informatika" onerror="this.src='https://placehold.co/400x300/cccccc/333333?text=Foto+Lab+2'" alt="Lab Komputer" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h4 class="font-semibold text-gray-800">Praktikum Informatika</h4>
+                                <p class="text-xs text-gray-500 mt-1">Pengembangan logika pemrograman dan perancangan web portofolio.</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                            <img src="https://placehold.co/400x300/e2e8f0/475569?text=Arduino+Project" onerror="this.src='https://placehold.co/400x300/cccccc/333333?text=Foto+Lab+3'" alt="Arduino Project" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h4 class="font-semibold text-gray-800">Eksperimen IoT & Arduino</h4>
+                                <p class="text-xs text-gray-500 mt-1">Simulasi sirkuit otomatisasi kendali perangkat mekanik sederhana.</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                            <img src="https://placehold.co/400x300/e2e8f0/475569?text=Diskusi+Sains" onerror="this.src='https://placehold.co/400x300/cccccc/333333?text=Foto+Lab+4'" alt="Diskusi Kelompok" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h4 class="font-semibold text-gray-800">Presentasi Kelompok IPA</h4>
+                                <p class="text-xs text-gray-500 mt-1">Memaparkan hasil penelitian ilmiah dan analisis pemecahan masalah.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Halaman Jaringan Komputer -->
+        <div id="page-jaringan" class="page-content">
+            <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <span class="bg-blue-100 text-primary text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Modul Kelas XII 5</span>
+                    <h1 class="text-3xl font-bold text-darktext mt-2">🌐 Modul Jaringan Komputer</h1>
+                    <p class="text-gray-600 mt-2">Dokumentasi konfigurasi jaringan, simulasi topologi Cisco Packet Tracer, dan protokol komunikasi data.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-blue-50 text-blue-700 text-xs font-bold px-2.5 py-1 rounded">Cisco Packet Tracer</span>
+                            <span class="text-xs text-gray-400"><i class="fa-regular fa-clock mr-1"></i> Modul Aktif</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">Topologi LAN & Konfigurasi Router</h3>
+                        <p class="text-gray-600 text-sm mb-4">Perancangan jaringan komputer untuk menghubungkan laboratorium komputer dengan ruang administrasi sekolah.</p>
+                        <div class="bg-gray-50 p-4 rounded-lg border border-dashed border-gray-300 text-center text-sm text-gray-500">
+                            <i class="fa-solid fa-network-wired text-2xl mb-2 block text-gray-400"></i>
+                            Catatan routing statis dan pengujian koneksi menggunakan perintah ping.
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-blue-50 text-blue-700 text-xs font-bold px-2.5 py-1 rounded">Subnetting IPv4</span>
+                            <span class="text-xs text-gray-400"><i class="fa-regular fa-clock mr-1"></i> Modul Aktif</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">Analisis IP Address & CIDR</h3>
+                        <p class="text-gray-600 text-sm mb-4">Perhitungan pembagian subnet untuk efisiensi alokasi alamat IP pada jaringan lokal.</p>
+                        <div class="bg-gray-50 p-4 rounded-lg border border-dashed border-gray-300 text-center text-sm text-gray-500">
+                            <i class="fa-solid fa-calculator text-2xl mb-2 block text-gray-400"></i>
+                            Tabel perhitungan netmask, host valid, dan broadcast address.
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Halaman IoT & Arduino -->
+        <div id="page-iot" class="page-content">
+            <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <span class="bg-blue-100 text-primary text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Modul Kelas XII 5</span>
+                    <h1 class="text-3xl font-bold text-darktext mt-2">🤖 Modul Internet of Things / Arduino</h1>
+                    <p class="text-gray-600 mt-2">Integrasi sistem mikrokontroler dengan prinsip mekanika dan otomatisasi perangkat.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-indigo-50 text-indigo-700 text-xs font-bold px-2.5 py-1 rounded">Wokwi / C++</span>
+                            <span class="text-xs text-gray-400"><i class="fa-regular fa-clock mr-1"></i> Praktikum</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">Monitoring Suhu & Sistem Pendingin Otomatis</h3>
+                        <p class="text-gray-600 text-sm mb-4">Rangkaian sensor DHT11 dengan mikrokontroler dan aktuator kipas angin mini sebagai simulasi sistem termal mesin.</p>
+                        <div class="bg-gray-50 p-4 rounded-lg border border-dashed border-gray-300 text-center text-sm text-gray-500">
+                            <i class="fa-solid fa-code text-2xl mb-2 block text-gray-400"></i>
+                            Baris program C++ untuk pembacaan ambang batas suhu kritis.
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-indigo-50 text-indigo-700 text-xs font-bold px-2.5 py-1 rounded">Motor Servo</span>
+                            <span class="text-xs text-gray-400"><i class="fa-regular fa-clock mr-1"></i> Praktikum</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">Purwarupa Gerbang Otomatis Berbasis Sensor</h3>
+                        <p class="text-gray-600 text-sm mb-4">Penerapan sensor ultrasonik HC-SR04 untuk menggerakkan motor servo pengontrol gerbang mekanik.</p>
+                        <div class="bg-gray-50 p-4 rounded-lg border border-dashed border-gray-300 text-center text-sm text-gray-500">
+                            <i class="fa-solid fa-microchip text-2xl mb-2 block text-gray-400"></i>
+                            Dokumentasi skema rangkaian pin digital dan PWM.
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Halaman Galeri Proyek -->
+        <div id="page-proyek" class="page-content">
+            <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <span class="bg-blue-100 text-primary text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Portofolio Karya</span>
+                    <h1 class="text-3xl font-bold text-darktext mt-2">💡 Galeri Proyek & Eksperimen</h1>
+                    <p class="text-gray-600 mt-2">Kumpulan portofolio proyek web, simulasi teknik, dan tugas informatika Natanael.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col justify-between">
+                        <div>
+                            <img src="https://placehold.co/400x250/1e3a8a/ffffff?text=Portofolio+Web" onerror="this.src='https://placehold.co/400x250/cccccc/333333?text=Proyek+1'" alt="Proyek Web" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <span class="bg-blue-50 text-blue-700 text-xs font-bold px-2.5 py-1 rounded">HTML5 / Tailwind</span>
+                                <h3 class="text-lg font-bold text-gray-800 mt-2 mb-2">Website Portofolio Pribadi</h3>
+                                <p class="text-gray-600 text-sm">Situs web portofolio modular responsif yang dikembangkan dengan standar struktur semantik modern.</p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-2">
+                            <a href="#demo" onclick="showNotification('Membuka demo portofolio Natanael.')" class="inline-flex items-center text-sm font-semibold text-primary hover:underline">
+                                <i class="fa-solid fa-external-link-alt mr-1"></i> Lihat Demo / Repositori
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col justify-between">
+                        <div>
+                            <img src="https://placehold.co/400x250/3b82f6/ffffff?text=Simulasi+Jaringan" onerror="this.src='https://placehold.co/400x250/cccccc/333333?text=Proyek+2'" alt="Proyek Jaringan" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <span class="bg-blue-50 text-blue-700 text-xs font-bold px-2.5 py-1 rounded">Cisco Packet Tracer</span>
+                                <h3 class="text-lg font-bold text-gray-800 mt-2 mb-2">Topologi Jaringan SMAN 2</h3>
+                                <p class="text-gray-600 text-sm">Desain jaringan komputer multi-lab dengan konfigurasi DHCP server dan pengujian router.</p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-2">
+                            <a href="#demo" onclick="showNotification('Membuka dokumentasi topologi jaringan.')" class="inline-flex items-center text-sm font-semibold text-primary hover:underline">
+                                <i class="fa-solid fa-external-link-alt mr-1"></i> Lihat Dokumentasi
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col justify-between">
+                        <div>
+                            <img src="https://placehold.co/400x250/1e293b/ffffff?text=Mekatronika+IoT" onerror="this.src='https://placehold.co/400x250/cccccc/333333?text=Proyek+3'" alt="Proyek IoT" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <span class="bg-blue-50 text-blue-700 text-xs font-bold px-2.5 py-1 rounded">Arduino / C++</span>
+                                <h3 class="text-lg font-bold text-gray-800 mt-2 mb-2">Sistem Monitoring Sensor Mekanik</h3>
+                                <p class="text-gray-600 text-sm">Purwarupa kendali aktuator suhu dan motor servo berbasis mikrokontroler.</p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-2">
+                            <a href="#demo" onclick="showNotification('Membuka kode sumber Arduino.')" class="inline-flex items-center text-sm font-semibold text-primary hover:underline">
+                                <i class="fa-solid fa-external-link-alt mr-1"></i> Lihat Kode Sumber
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Halaman Kontak -->
+        <div id="page-kontak" class="page-content">
+            <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <span class="bg-blue-100 text-primary text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Hubungi Kami</span>
+                    <h1 class="text-3xl font-bold text-darktext mt-2">📬 Formulir Kontak</h1>
+                    <p class="text-gray-600 mt-2">Kirimkan pertanyaan, saran, atau penawaran diskusi seputar teknik dan akademik.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 md:col-span-1 space-y-6">
+                        <h3 class="text-lg font-bold text-gray-800 border-b pb-2">Informasi Kontak</h3>
+                        <div class="flex items-start space-x-3">
+                            <div class="bg-blue-50 text-primary p-3 rounded-lg"><i class="fa-solid fa-envelope"></i></div>
+                            <div>
+                                <p class="text-xs text-gray-500 font-semibold">Email Sekolah</p>
+                                <p class="text-sm text-gray-700">natanael.antonio@sman2-mojokerto.sch.id</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="bg-blue-50 text-primary p-3 rounded-lg"><i class="fa-solid fa-location-dot"></i></div>
+                            <div>
+                                <p class="text-xs text-gray-500 font-semibold">Lokasi Institusi</p>
+                                <p class="text-sm text-gray-700">SMAN 2 Kota Mojokerto, Jawa Timur</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="bg-blue-50 text-primary p-3 rounded-lg"><i class="fa-solid fa-graduation-cap"></i></div>
+                            <div>
+                                <p class="text-xs text-gray-500 font-semibold">Target Kuliah</p>
+                                <p class="text-sm text-gray-700">S1 Teknik Mesin</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 md:col-span-2">
+                        <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Nama Pengirim</label>
+                                <input type="text" id="sender-name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none" placeholder="Masukkan nama lengkap...">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Alamat Email</label>
+                                <input type="email" id="sender-email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none" placeholder="nama@email.com">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Kategori Pesan</label>
+                                <select id="sender-category" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none">
+                                    <option value="Pertanyaan">Pertanyaan</option>
+                                    <option value="Kolaborasi">Kolaborasi</option>
+                                    <option value="Saran">Saran</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Pesan Teks</label>
+                                <textarea id="sender-message" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none" placeholder="Tuliskan pesan atau masukan Anda di sini..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-primary hover:bg-blue-900 text-white font-semibold py-3 rounded-lg shadow transition">
+                                <i class="fa-solid fa-paper-plane mr-2"></i> Kirim Pesan
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="bg-primary text-white py-8 border-t border-blue-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="text-sm text-center sm:text-left">
+                <p>&copy; 2026 Natanael Leonard Antonio - SMAN 2 Kota Mojokerto.</p>
+                <p class="text-blue-300 text-xs mt-1">Persiapan Studi S1 Teknik Mesin. Hak Cipta Dilindungi.</p>
+            </div>
+            <div class="flex space-x-4">
+                <a href="https://github.com" target="_blank" class="w-10 h-10 bg-blue-800 hover:bg-secondary rounded-full flex items-center justify-center transition" title="GitHub">
+                    <i class="fa-brands fa-github text-lg"></i>
+                </a>
+                <a href="https://instagram.com" target="_blank" class="w-10 h-10 bg-blue-800 hover:bg-secondary rounded-full flex items-center justify-center transition" title="Instagram">
+                    <i class="fa-brands fa-instagram text-lg"></i>
+                </a>
+                <a href="https://linkedin.com" target="_blank" class="w-10 h-10 bg-blue-800 hover:bg-secondary rounded-full flex items-center justify-center transition" title="LinkedIn">
+                    <i class="fa-brands fa-linkedin text-lg"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Non-Intrusive Modal Notification Box -->
+    <div id="notification-modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-sm w-full p-6 text-center transform transition-all">
+            <div id="modal-icon" class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xl mx-auto mb-4">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3 id="modal-title" class="text-lg font-bold text-gray-800 mb-2">Informasi</h3>
+            <p id="modal-message" class="text-sm text-gray-600 mb-6">Pesan berhasil diproses.</p>
+            <button onclick="closeNotification()" class="w-full bg-primary hover:bg-blue-900 text-white font-semibold py-2 rounded-lg transition">
+                Tutup
+            </button>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * Fungsi untuk beralih antar halaman secara modular
+         */
+        function switchPage(pageId) {
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(p => p.classList.remove('active'));
+
+            const target = document.getElementById('page-' + pageId);
+            if (target) {
+                target.classList.add('active');
+            }
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                if (link.getAttribute('data-target') === pageId) {
+                    link.classList.add('bg-blue-900');
+                } else {
+                    link.classList.remove('bg-blue-900');
+                }
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /**
+         * Toggle menu navigasi mobile
+         */
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
+            }
+        }
+
+        /**
+         * Menangani pengiriman formulir kontak
+         */
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('sender-name').value;
+            const category = document.getElementById('sender-category').value;
+            
+            showNotification(`Terima kasih, ${name}! Pesan dengan kategori "${category}" telah berhasil dikirimkan ke Natanael.`);
+            event.target.reset();
+        }
+
+        /**
+         * Menampilkan kotak pesan kustom
+         */
+        function showNotification(message, title = "Berhasil") {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-message').innerText = message;
+            const modal = document.getElementById('notification-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        /**
+         * Menutup kotak pesan kustom
+         */
+        function closeNotification() {
+            const modal = document.getElementById('notification-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
